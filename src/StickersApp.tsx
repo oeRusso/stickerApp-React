@@ -1,10 +1,18 @@
-import { mockStickers } from "./mock-data/stickers.mock";
+import { mockStickers, Sticker } from './mock-data/stickers.mock';
+import { useState } from 'react';
 import { CustomHeader } from './shared/components/CustomHeader';
 import { SearchBar } from './shared/components/SearchBar';
 import { PreviousSearches } from './stickers/components/PreviousSearches';
+import { StickerList } from './stickers/components/StickerList';
 
 
 export const StickersApp = () => {
+
+  const [previousTerms, setpreviousTerms] = useState(['naruto'])
+
+  const handleTermClicked = (term : string)=>{
+    console.log({term})
+  }
   return (
     <>
       <CustomHeader
@@ -13,19 +21,12 @@ export const StickersApp = () => {
       />
 
       <SearchBar placeholder="Busca el stiker que quieras" />
-      <PreviousSearches />
-
-      <div className="stickers-container">
-        {mockStickers.map((sticker) => (
-          <div key={sticker.id} className="sticker-card">
-            <img src={sticker.url} alt={sticker.title} />
-            <h3>{sticker.title}</h3>
-            <p>
-              {sticker.width}x{sticker.height} (1.5mb)
-            </p>
-          </div>
-        ))}
-      </div>
+      <PreviousSearches searches={previousTerms} 
+      onLabelClicked={handleTermClicked}/>
+      {/* pq aca se manda lo que tiene el props y dentro lo de la funcion y no al revez? */}
+      {/* pq el componente hijo recibe una funcion del componente padre */}
+      {/* ver que exactamente envia ese term y si eso que recibe la funcion hija es una funcion padre o generica */}
+      <StickerList stickers={mockStickers} />
     </>
   );
 };

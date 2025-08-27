@@ -1,15 +1,22 @@
-import React from 'react'
+import type { FC } from "react";
 
-export const PreviousSearches = () => {
+interface Props {
+  searches: string[];
+  onLabelClicked: (term: string) => void;
+}
+export const PreviousSearches: FC<Props> = ({ searches, onLabelClicked }) => {
   return (
     <div className="previous-searches">
-          <h2>Busquedas Previas</h2>
-          <ul className="previous-searches-list">
-              <li>Goku</li>
-              <li>Saitama</li>
-              <li>Naruto</li>
-              <li>Sasuke</li>
-          </ul>
-      </div>
-  )
-}
+      <h2>Busquedas Previas</h2>
+      <ul className="previous-searches-list">
+        {searches.map((term) => {
+          return (
+            <li key={term} onClick={() => onLabelClicked(term)}>
+              {term}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+};
