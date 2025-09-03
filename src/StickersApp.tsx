@@ -8,11 +8,15 @@ import { StickerList } from './stickers/components/StickerList';
 
 export const StickersApp = () => {
 
-  const [previousTerms, setpreviousTerms] = useState(['naruto'])
+  const [previousTerms, setPreviousTerms] = useState(['naruto'])
 
   const handleTermClicked = (term : string)=>{
     console.log({term})
   }
+
+  const handleSearch = (query: string) => {
+    console.log({query})
+  };
   return (
     <>
       <CustomHeader
@@ -20,12 +24,13 @@ export const StickersApp = () => {
         description="Descubre y comparte el sticker perfecto"
       />
 
-      <SearchBar placeholder="Busca el stiker que quieras" />
+      <SearchBar 
+      placeholder="Busca el stiker que quieras"
+      onQuery = {handleSearch} 
+      />
       <PreviousSearches searches={previousTerms} 
       onLabelClicked={handleTermClicked}/>
-      {/* pq aca se manda lo que tiene el props y dentro lo de la funcion y no al revez? */}
-      {/* pq el componente hijo recibe una funcion del componente padre */}
-      {/* ver que exactamente envia ese term y si eso que recibe la funcion hija es una funcion padre o generica */}
+      
       <StickerList stickers={mockStickers} />
     </>
   );
