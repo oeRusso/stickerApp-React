@@ -11,8 +11,12 @@ export const SearchBar = ({ placeholder = "Buscar", onQuery }: Props) => {
 
 
   useEffect(() => {
-    console.log({query})
-  }, [query])
+    const timeoutId = setTimeout(() => {
+      onQuery(query)
+    }, 700)
+    return () => clearTimeout(timeoutId)
+  }, [query, onQuery]) 
+  
 
   const handleSearch = () => {
     onQuery(query)
