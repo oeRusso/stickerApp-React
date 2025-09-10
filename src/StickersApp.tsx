@@ -15,8 +15,12 @@ export const StickersApp = () => {
   }
 
   const handleSearch = (query: string) => {
-    console.log({query})
+    if (query === "") return;
+    const minusQuery = query.toLowerCase()
+    if(previousTerms.includes(minusQuery)) return;
+    setPreviousTerms([...previousTerms, minusQuery]);
   };
+  // TODO: ESTUDIAR MAS ESTE CODIGO CON CLAUDE
   return (
     <>
       <CustomHeader

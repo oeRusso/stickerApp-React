@@ -5,28 +5,30 @@ interface Props {
   onQuery: (query: string) => void;
 }
 
-
 export const SearchBar = ({ placeholder = "Buscar", onQuery }: Props) => {
-  const [query, setQuery] = useState('')
-
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      onQuery(query)
-    }, 700)
-    return () => clearTimeout(timeoutId)
-  }, [query, onQuery]) 
+      onQuery(query);
+    }, 700);
+    query.toLowerCase()
+    return () => clearTimeout(timeoutId);
+  }, [query, onQuery]);
+
   
-
   const handleSearch = () => {
-    onQuery(query)
-   }
+   
+    onQuery(query);
+  };
 
-   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      handleSearch()
+  //  TODO: ACA EMPEZAMOS A TRABAJR EN ESTA FUNCION
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearch();
     }
-   }
+  };
   return (
     <div className="search-container">
       <input
@@ -36,8 +38,7 @@ export const SearchBar = ({ placeholder = "Buscar", onQuery }: Props) => {
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <button
-       onClick={handleSearch}>Buscar</button>
+      <button onClick={handleSearch}>Buscar</button>
     </div>
   );
 };
