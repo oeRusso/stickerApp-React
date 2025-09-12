@@ -16,9 +16,9 @@ export const StickersApp = () => {
 
   const handleSearch = (query: string) => {
     if (query === "") return;
-    const minusQuery = query.toLowerCase()
+    const minusQuery = query.toLowerCase().trim(); 
     if(previousTerms.includes(minusQuery)) return;
-    setPreviousTerms([...previousTerms, minusQuery]);
+    setPreviousTerms([minusQuery, ...previousTerms].slice(0, 6)); 
   };
   // TODO: ESTUDIAR MAS ESTE CODIGO CON CLAUDE
   return (
