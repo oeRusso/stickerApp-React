@@ -1,3 +1,4 @@
+import { Sticker } from '../stickers/interfaces/sticker.interface';
 export interface Sticker {
     id: string;
     title: string;

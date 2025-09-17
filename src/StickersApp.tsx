@@ -4,6 +4,7 @@ import { CustomHeader } from './shared/components/CustomHeader';
 import { SearchBar } from './shared/components/SearchBar';
 import { PreviousSearches } from './stickers/components/PreviousSearches';
 import { StickerList } from './stickers/components/StickerList';
+import { getStickersByQuery } from './stickers/actions/get-stickers-by-query.action';
 
 
 export const StickersApp = () => {
@@ -14,11 +15,12 @@ export const StickersApp = () => {
     console.log({term})
   }
 
-  const handleSearch = (query: string) => {
+  const handleSearch = async (query: string) => {
     if (query === "") return;
     const minusQuery = query.toLowerCase().trim(); 
     if(previousTerms.includes(minusQuery)) return;
     setPreviousTerms([minusQuery, ...previousTerms].slice(0, 6)); 
+    await getStickersByQuery(minusQuery)
   };
   // TODO: ESTUDIAR MAS ESTE CODIGO CON CLAUDE
   return (
