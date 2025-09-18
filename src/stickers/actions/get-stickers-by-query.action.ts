@@ -1,7 +1,8 @@
 import axios from "axios"
 import type { GiphyResponse } from "../interfaces/giphy.response"
+import type { Sticker } from "../interfaces/sticker.interface"
 
-export const getStickersByQuery = async(query:string)=>{
+export const getStickersByQuery = async(query:string): Promise<Sticker[]>=>{
 
     const response = await axios.get<GiphyResponse>('https://api.giphy.com/v1/stickers/search',{
         params:{
@@ -15,5 +16,19 @@ export const getStickersByQuery = async(query:string)=>{
 
     console.log(response.data)
 
-    // fetch(`https://api.giphy.com/v1/stickers/search?api_key=WqSxx1cSZMovkBcbR5UT7Z4WHjdbIhUU&q=${query}&limit=10&lang=es`)
+    return response.data.data.map(
+        (sticker) => (({
+            id: sticker.id,
+            title: sticker.title,
+            url: sticker.images.original.url,
+            width: Number( sticker.images.original.width,),
+            height: Number(sticker.images.original.height,),
+
+        }))
+    )
+
+      // TODO: entender mejor esto por que lo hace asi por que accede a varios lugares para llegar a la url width y height
+
+
+    
 }
