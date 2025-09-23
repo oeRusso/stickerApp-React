@@ -21,9 +21,9 @@ export const StickersApp = () => {
     if(previousTerms.includes(minusQuery)) return;
     setPreviousTerms([minusQuery, ...previousTerms].slice(0, 6)); 
     const stickers = await getStickersByQuery(minusQuery)
-    console.log(stickers)
+    console.log({stickers})
   };
-  // TODO: entender mejor esto por que lo hace asi por que accede a varios lugares para llegar a la url width y height
+  
   return (
     <>
       <CustomHeader

@@ -14,10 +14,9 @@ export const getStickersByQuery = async(query:string): Promise<Sticker[]>=>{
         }
     })
 
-    console.log(response.data)
+    // console.log(response.data)
 
-    return response.data.data.map(
-        (sticker) => (({
+    return response.data.data.map((sticker) => (({
             id: sticker.id,
             title: sticker.title,
             url: sticker.images.original.url,
@@ -27,7 +26,7 @@ export const getStickersByQuery = async(query:string): Promise<Sticker[]>=>{
         }))
     )
 
-      // TODO: entender mejor esto por que lo hace asi por que accede a varios lugares para llegar a la url width y height
+    
 
 
     
