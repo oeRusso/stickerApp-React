@@ -42,3 +42,5 @@ export const StickersApp = () => {
     </>
   );
 };
+
+// TODO: TAREA (LEER EN LA ULTIMA PARTE DEL VIDEO)
