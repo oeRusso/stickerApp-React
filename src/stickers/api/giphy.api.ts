@@ -4,6 +4,6 @@ export const giphyApi = axios.create({
     baseURL:'https://api.giphy.com/v1/stickers',
     params: {
         lang:'es',
-        api_key:import.meta.env.VITE_GIPHY_API_JEY
+        api_key:import.meta.env.VITE_GIPHY_API_KEY
     }
 })
